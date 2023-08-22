@@ -1,3 +1,62 @@
-body{
-    background-color: brown;
+.navbar-container{
+    background-color: #20232a;
+    display: flex;
+    justify-content: space-evenly;
+
 }
+.navbar-container .navbar-logo{
+    color: white;
+    text-decoration: none;
+    font-family: cursive;
+    font-size: 40px;
+     display: flex;
+     justify-content: flex-start;
+   
+}
+.navbar-container .navbar-logo a{
+    text-decoration: none;
+    color: #FFF4F4;
+    
+   
+}
+.navbar-container .navbar-logo :hover{
+    color:#4F709C ;
+}
+ .navbar-list{
+    display: flex;
+ 
+    text-decoration: none;
+}
+.navbar-list .nav-ul{
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    gap: 40px;
+}
+.navbar-list .nav-ul .nav-li{
+display: flex;
+justify-content: space-evenly;
+text-decoration: none;
+
+}
+.navbar-list .nav-ul .nav-li a{
+    text-decoration: none;
+    color: #FFF4F4;
+    font-family: cursive;
+    font-size: 25px;
+    background-color:#4F709C;
+}
+.navbar-list .nav-ul .nav-li  :hover{
+    background-color: #FFF4F4;
+    color: #4F709C;
+
+}
+
+ 
+
+  
+  
+   
+   
+ 
+
