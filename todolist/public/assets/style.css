@@ -1,214 +1,248 @@
- body{
-margin: 0%;
-padding: 0%;
+ body {
+     margin: 0%;
+     padding: 0%;
  }
-.navbar-container{
-    background-color: #20232a;
-    display: flex;
-    justify-content: space-evenly;
-   
-   
 
-}
-.navbar-container .navbar-logo{
-    color: white;
-    text-decoration: none;
-    font-family: cursive;
-    font-size: 40px;
+ .navbar-container {
+     background-color: #20232a;
+     display: flex;
+     justify-content: space-evenly;
+
+
+
+ }
+
+ .navbar-container .navbar-logo {
+     color: white;
+     text-decoration: none;
+     font-family: cursive;
+     font-size: 40px;
      display: flex;
      justify-content: flex-start;
-   
-}
-.navbar-container .navbar-logo a{
-    text-decoration: none;
-    color: #FFF4F4;
+
+ }
+
+ .navbar-container .navbar-logo a {
+     text-decoration: none;
+     color: #FFF4F4;
+
+
+ }
+
+ .navbar-container .navbar-logo :hover {
+     color: #4F709C;
+ }
+
+ .navbar-list {
+     display: flex;
+
+     text-decoration: none;
+ }
+
+ .navbar-list .nav-ul {
+     display: flex;
+     justify-content: space-around;
+     text-decoration: none;
+     gap: 40px;
+ }
+
+ .navbar-list .nav-ul .nav-li {
+     display: flex;
+     justify-content: space-evenly;
+     text-decoration: none;
+
+ }
+
+ .navbar-list .nav-ul .nav-li a {
+     text-decoration: none;
+     color: #FFF4F4;
+     font-family: cursive;
+     font-size: 25px;
+     background-color: #4F709C;
+ }
+
+ .navbar-list .nav-ul .nav-li :hover {
+     background-color: #FFF4F4;
+     color: #4F709C;
+
+ }
+
+ .banner {
+     display: flex;
+     justify-content: space-around;
+     background-color: bisque;
+     height: 630px;
+     border-radius: 50px;
+     align-items: center;
+ }
+
+ .banner .banner-content {
+     display: flex;
+     flex-direction: column;
+
+     align-items: center;
+     text-align: center;
+ }
+
+ .banner .banner-content h2 {
+     color: #4F709C;
+     font-size: 60px;
+     font-family: cursive;
+     text-align: center;
+ }
+
+ .banner .banner-content p {
+     color: #20232a;
+     font-size: 40px;
+     text-align: center;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ }
+
+ .banner .banner-content button {
+     border-radius: 40px;
+     height: 50px;
+     width: 250px;
+     color: #FFF4F4;
+     background-color: #20232a;
+     font-size: 30px;
+     font-family: cursive;
+ }
+
+ .banner .banner-content button:hover {
+     background-color: chocolate;
+ }
+
+
+
+ .banner .banner-img .banner-image {
+     display: flex;
+
+     height: 400px;
+     width: 500px;
+
+
+ }
+
+ .banner .banner-image {
+     cursor: pointer;
+     transition: all 0.3s ease-out;
+     border-radius: 30px;
+
+ }
+
+ @media(max-width:800px) {
+     .banner .banner-img .banner-image {
+         height: 90%;
+         width: 370px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+
+
+
+
+     }
+
+     .banner .banner-image {
+         text-align: center;
+         display: flex;
+         justify-content: center;
+         text-align: center;
+
+     }
+
+     .banner {
+         display: flex;
+         flex-direction: column;
+         height: 100%;
+     }
     
    
-}
-.navbar-container .navbar-logo :hover{
-    color:#4F709C ;
-}
- .navbar-list{
-    display: flex;
- 
-    text-decoration: none;
-}
-.navbar-list .nav-ul{
-    display: flex;
-    justify-content: space-around;
-    text-decoration: none;
-    gap: 40px;
-}
-.navbar-list .nav-ul .nav-li{
-display: flex;
-justify-content: space-evenly;
-text-decoration: none;
 
-}
-.navbar-list .nav-ul .nav-li a{
-    text-decoration: none;
-    color: #FFF4F4;
-    font-family: cursive;
-    font-size: 25px;
-    background-color:#4F709C;
-}
-.navbar-list .nav-ul .nav-li  :hover{
-    background-color: #FFF4F4;
-    color: #4F709C;
+     
+     
+ }
 
-}
+ /* The Modal (background) */
+ .modal {
+     display: flex;
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.4);
 
-.banner{
-    display: flex;
-    justify-content: space-around;
-    background-color: bisque;
-    height: 630px;
-    border-radius: 50px;
-    align-items: center;
-}
-.banner .banner-content{
-    display: flex;
-    flex-direction: column;
-   
-    align-items: center;
-    text-align: center;
-}
-.banner .banner-content h2{
-    color: #4F709C;
-    font-size: 60px;
-    font-family: cursive;
-    text-align: center;
-}
-.banner .banner-content p{
-    color:#20232a;
-    font-size: 40px;
-    text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-.banner .banner-content button{
-    border-radius: 40px;
-    height: 50px;
-    width: 250px;
-  color: #FFF4F4;
-   background-color: #20232a;
-   font-size: 30px;
-   font-family: cursive;
-}
-.banner .banner-content button:hover{
-    background-color: chocolate;
-}
+     align-items: center;
+     justify-content: center;
+ }
 
+ /* Modal Content */
+ .modal-content {
+     background-color: bisque;
+     padding: 20px;
+     border: 1px solid #888;
+     width: 40%;
+     border-radius: 20px;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+     position: relative;
+ }
 
+ /* Close Button */
+ .close {
+     color: #aaa;
+     font-size: 28px;
+     font-weight: bold;
+     position: absolute;
+     top: 10px;
+     right: 15px;
+     cursor: pointer;
+ }
 
-.banner .banner-img .banner-image{
-    display: flex;
-    
-    height: 400px;
-    width: 500px;  
-  
-    
-}
-.banner .banner-image{
-    cursor: pointer;
-  transition: all 0.3s ease-out;
-    border-radius: 30px;
- 
-}
+ .close:hover,
+ .close:focus {
+     color: black;
+     text-decoration: none;
+ }
 
-/* The Modal (background) */
-.modal {
-    display: flex;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-   
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Modal Content */
-  .modal-content {
-    background-color:bisque;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    position: relative;
-  }
-  
-  /* Close Button */
-  .close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-  }
+ .signup-form-container {
+     max-width: 400px;
+     margin: 0 auto;
+     padding: 20px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     background-color: #f5f5f5;
+ }
 
-  .signup-form-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-  }
-  
-  .signup-form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #4F709C;
-  }
-  
-  .signup-form-container form input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .signup-form-container form button {
-    display: block;
-    
-    width: 100%;
-    padding: 10px;
-    background-color:#20232a;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .signup-form-container form button:hover {
-    background-color: chocolate;
-  }
-  
+ .signup-form-container h2 {
+     text-align: center;
+     margin-bottom: 20px;
+     color: #4F709C;
+ }
 
+ .signup-form-container form input {
+     display: block;
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 15px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+ }
 
+ .signup-form-container form button {
+     display: block;
 
+     width: 100%;
+     padding: 10px;
+     background-color: #20232a;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+ }
 
-  
-
- 
-
-  
-  
-   
-   
- 
-
+ .signup-form-container form button:hover {
+     background-color: chocolate;
+ }
