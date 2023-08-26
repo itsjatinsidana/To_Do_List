@@ -246,3 +246,50 @@
  .signup-form-container form button:hover {
      background-color: chocolate;
  }
+ .user h2{
+    display: flex;
+color: #4F709C;
+font-family: cursive;
+font-size: 40px;
+position: relative;
+left: 50px;
+ }
+ .notes h4{
+    display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    color: #20232a;
+    position: relative;
+    left: 80px;
+ }
+
+.addnew-btn{
+    position: relative;
+ 
+    color: white;
+   
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+  
+    /* Positioning adjustments */
+    position: absolute;
+    top: 170px; /* Adjust this value to control the distance from the top */
+    right: 60px; /* Adjust this value to control the distance from the right */
+    transform: translate(-50%, -50%); /* Center the button */
+  }
+  .plus-btn{
+
+    height: 40px;
+    width: 40px;
+    background-color: chocolate;
+  }
+  
+  
+  
+  
+  
+  
+  
+
+  
