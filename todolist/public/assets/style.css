@@ -1,6 +1,7 @@
  body {
      margin: 0%;
      padding: 0%;
+     overflow-x: hidden;
  }
 
  .navbar-container {
@@ -59,6 +60,12 @@
      font-family: cursive;
      font-size: 25px;
      background-color: #4F709C;
+ }
+ .navbar-list .nav-ul .nav-li .login-btn{
+    background-color: #4F709C;
+    color: #f5f5f5;
+    font-family: cursive;
+    font-size: 25px; 
  }
 
  .navbar-list .nav-ul .nav-li :hover {
@@ -358,7 +365,7 @@ padding: 0%;
     text-align: center;
    
  }
-  
+
   
 
   

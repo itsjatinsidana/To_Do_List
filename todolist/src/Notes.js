@@ -81,7 +81,7 @@ export const Notes = () => {
                                 />
                                 <p>Character count: {text.length}</p>
                                 <div className="notes-btn">
-                                <button className="notes-button">save</button>
+                                <button className="notes-button">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -89,7 +89,12 @@ export const Notes = () => {
                     </div>
                 </div>
 
+
+ 
+
             )}
+
+         
 
         </>
     )
