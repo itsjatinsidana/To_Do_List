@@ -1,9 +1,10 @@
 import express from "express";  // after npm i express, we import express and in next lines we use its functions
 const app = express(); // making variable which uses all express functions
 const port = 5000;
-import cors from "cors";
+app.use(express.json()) //Required if you want to use req.body
+import cors from "cors"; //CORS is required to integrate two different domains for data transfer
+//Required code for enabling code in Node JS
 app.use(cors());
-app.use(express.json())
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -11,6 +12,7 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+
 //supabase code
 import { createClient } from "@supabase/supabase-js";
 const supabaseurl = 'https://kgtxemrgwkupvxgadoxv.supabase.co';
@@ -22,14 +24,20 @@ app.listen(port, () => {
 })
 
 app.post("/signup", async (req, res) => {
-    console.log(req.body);
-let {username,email,password}=req.body
+    //Destructuring Form Data sent from Frontend (Make sure key names are the same in frontend as they are here, e.g. "username"
+    let {username,email,password}=req.body
+
+    //Supabase insertion code
     const { error } = await supabase
         .from('tdl_users')
         .insert({ name: username, email: email, password: password })
+
+    //If error exists, send status code 400
     if (error) {
         res.status(400).send();
     }
+
+    //else send status code 200
     else {
         res.status(200).send();
     }
