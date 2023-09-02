@@ -1,6 +1,8 @@
 import { Navbar } from "./Navbar"
 import React, { useState } from 'react';
 
+import  axios  from "axios";
+
 export const Home = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -16,7 +18,7 @@ export const Home = () => {
         username: '',
         email: '',
         password: ''
-      });
+    });
     
       const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,11 +27,20 @@ export const Home = () => {
           [name]: value
         }));
       };
-      const handleSubmit = (e) => {
+      
+     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData); // You can perform further actions like sending data to a server here
-      };
+        console.log(formData);
+        axios.post("http://localhost:5000/signup",formData)
+        .then((res) =>{
+            console.log(res.status)
+        })
+        .catch((e) => {
+            console.log(e);
+        })
 
+        
+     };
 
     return (
         <>
