@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react";
+import axios from "axios";
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const nav = useNavigate();
 
     const openModal = () => {
         setIsOpen(true);
@@ -26,6 +28,23 @@ export const Navbar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData); // You can perform further actions like sending data to a server here
+         axios.get("http://localhost:5000/login",formData)
+         .then((res) =>{
+            if(res.status === 200){
+              console.log("login succesfull");
+            
+                
+             
+              
+            }
+            else if(res.status === 400){
+                console.log("login fail");
+
+            }
+         })
+         .catch((e) =>{
+            console.log(e);
+         })
     };
     return (
         <>

@@ -43,3 +43,17 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+app.get('/login', async(res,req) =>{
+    let{email,password} = req.body
+    const{error} = await supabase
+    .from('tdl_users')
+    .select({email:email,password:password})
+    if(error){
+        res.status(400).send();
+        
+    }
+    else{
+        res.status(200).send();
+    }
+});
+
