@@ -28,7 +28,7 @@ export const Navbar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData); // You can perform further actions like sending data to a server here
-         axios.get("http://localhost:5000/login",formData)
+         axios.post("http://localhost:5000/login",formData)
          .then((res) =>{
             if(res.status === 200){
               console.log("login succesfull");

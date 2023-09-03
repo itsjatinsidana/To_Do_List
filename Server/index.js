@@ -43,18 +43,20 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-app.get('/login', async(res,req) =>{
+app.post('/login', async(req,res) =>{
     let{email,password} = req.body
-    const{error} = await supabase
+    const{ data,error} = await supabase
     .from('tdl_users')
-    .select({email:email,password:password})
-    .eq("email",email)
-    if(error){
-        res.status(400).send();
+    .select()
+    .eq('email',email)
+    
+    if(data.length!==0){
+       res.status(200).send(data[0].email);
+        console.log(data);
         
     }
     else{
-        res.status(200).send();
+        res.status(400).send();
     }
 });
 
