@@ -48,6 +48,7 @@ app.get('/login', async(res,req) =>{
     const{error} = await supabase
     .from('tdl_users')
     .select({email:email,password:password})
+    .eq("email",email)
     if(error){
         res.status(400).send();
         
