@@ -33,13 +33,15 @@ export const Home = () => {
         console.log(formData);
         axios.post("http://localhost:5000/signup",formData)//to create backend connection
         .then((res) =>{             
-            
-            if(res.status === 200){
-                console.log("signup succesfull")
-            }
-            else if(res.status === 400){
-                console.log("signup fail")
-            }
+         if(res.data === 'success'){
+            console.log('signup successful')
+         }
+         else if(res.data === 'failed'){
+            console.log('signup failed')
+         }
+         else if(res.data === 'duplicate'){
+                 console.log('email already exist')
+         }
         })
         .catch((e) => {
             console.log(e);

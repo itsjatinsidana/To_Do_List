@@ -5,7 +5,7 @@ app.use(express.json()) //Required if you want to use req.body
 import cors from "cors"; //CORS is required to integrate two different domains for data transfer
 //Required code for enabling code in Node JS
 app.use(cors());
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -25,38 +25,52 @@ app.listen(port, () => {
 
 app.post("/signup", async (req, res) => {
     //Destructuring Form Data sent from Frontend (Make sure key names are the same in frontend as they are here, e.g. "username"
-    let {username,email,password}=req.body
-
-    //Supabase insertion code
-    const { error } = await supabase
+    let { username, email, password } = req.body
+    email = email.toLowerCase();
+    const { data } = await supabase
         .from('tdl_users')
-        .insert({ name: username, email: email, password: password })
-
-    //If error exists, send status code 400
-    if (error) {
-        res.status(400).send();
+        .select()
+        .eq('email', email)
+    if (data.length !== 0) {
+        res.send('duplicate');
     }
-
-    //else send status code 200
     else {
-        res.status(200).send();
+        //Supabase insertion code
+        const { error } = await supabase
+            .from('tdl_users')
+            .insert({ name: username, email: email, password: password })
+
+        //If error exists, send status code 400
+        if (error) {
+            res.send('fail');
+        }
+
+        //else send status code 200
+        else {
+            res.send('success');
+        }
     }
 });
 
-app.post('/login', async(req,res) =>{
-    let{email,password} = req.body
-    const{ data,error} = await supabase
-    .from('tdl_users')
-    .select()
-    .eq('email',email)
-    
-    if(data.length!==0){
-       res.status(200).send(data[0].email);
-        console.log(data);
-        
+
+app.post('/login', async (req, res) => {
+    let { email, password } = req.body
+    email = email.toLowerCase();
+    const { data, error } = await supabase
+        .from('tdl_users')
+        .select()
+        .eq('email', email)
+
+    if (data.length !== 0) {
+       if(data[0].password === password){
+        res.send('success')
+       }
+       else {
+        res.send('password not matched')
+       }
     }
-    else{
-        res.status(400).send();
+    else {
+        res.send('account does not exist');
     }
 });
 

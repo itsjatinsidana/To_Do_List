@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
+import { getCookie,setCookie } from "./config/CookieMaker";
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const nav = useNavigate();
@@ -28,23 +29,23 @@ export const Navbar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData); // You can perform further actions like sending data to a server here
-         axios.post("http://localhost:5000/login",formData)
-         .then((res) =>{
-            if(res.status === 200){
-              console.log("login succesfull");
-            
-                
-             
-              
-            }
-            else if(res.status === 400){
-                console.log("login fail");
-
-            }
-         })
-         .catch((e) =>{
-            console.log(e);
-         })
+        axios.post("http://localhost:5000/login", formData)
+            .then((res) => {
+                if (res.data === 'success') {
+                    console.log('login successful')
+                    setCookie('em',formData.email,5)
+                    nav('/notes')
+                }
+                else if (res.data === 'password not matched') {
+                    console.log('password not matched')
+                }
+                else if (res.data === 'account does not exist') {
+                    console.log('account does not exist')
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            })
     };
     return (
         <>
