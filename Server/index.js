@@ -62,15 +62,31 @@ app.post('/login', async (req, res) => {
         .eq('email', email)
 
     if (data.length !== 0) {
-       if(data[0].password === password){
-        res.send('success')
-       }
-       else {
-        res.send('password not matched')
-       }
+        if (data[0].password === password) {
+            res.send('success')
+        }
+        else {
+            res.send('password not matched')
+        }
     }
     else {
         res.send('account does not exist');
     }
 });
+app.post('/getuserdata', async (req, res) => {
+    let { email} = req.body
+    console.log(email)
+    email = email.toLowerCase();
+    const { data, error } = await supabase
+    .from('tdl_users')
+    .select()
+    .eq('email', email)
+    if(data.length !== 0){
+        res.send(data[0])
+    }
+    else{
+        res.send('error')
+    }
+    
+})
 

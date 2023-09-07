@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navbar } from "./Navbar";
+import { getCookie } from "./config/CookieMaker";
+import axios from "axios";
 
 
 
 export const Notes = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [email, setEmail] = useState('');
+    const [name, setUserName] = useState('');
+    const firstRender = useRef(true);
     const openModal = () => {
         setIsOpen(true);
     }
@@ -24,6 +29,27 @@ export const Notes = () => {
         notescontent: '',
 
     });
+    function getUserData() {
+        axios.post('http://localhost:5000/getuserdata', {
+            "email": email
+
+        }).then((res) => {
+            console.log(res.data)
+            setUserName(res.data.name)//welcome useername
+        })
+
+    }
+    useEffect(() => {
+        if (firstRender.current) {
+            setEmail(getCookie('em'))
+            firstRender.current = false;
+        }
+    }, []);
+    useEffect(() => {
+        if (!firstRender.current && email) {
+            getUserData()
+        }
+    }, [email])
 
     const handleChangehead = (e) => {
         const { name, value } = e.target;
@@ -41,7 +67,7 @@ export const Notes = () => {
         <>
             <Navbar />
             <div className="user">
-                <h2> welcome user</h2>
+                <h2> welcome {name}</h2>
             </div>
             <div className="notes">
                 <h4> number of notes : </h4>
@@ -56,24 +82,24 @@ export const Notes = () => {
                         <span className="close" onClick={closeModal}>&times;</span>
                         <div className="notes-content">
                             <form onSubmit={handleSubmit}>
-                          
+
                                 <input
 
                                     type="text"
                                     className="heading"
                                     name="heading"
                                     placeholder="Heading..."
-                                   value={formData.heading} 
+                                    value={formData.heading}
                                     onChange={handleChangehead}
-                                    
+
                                 />
-                             
-                               
+
+
 
                                 <textarea
                                     value={text}
-                                   className="contents"
-                                   
+                                    className="contents"
+
                                     onChange={handleChange}
                                     placeholder="Enter your text here..."
                                     rows={20} // Adjust the number of rows as needed
@@ -81,7 +107,7 @@ export const Notes = () => {
                                 />
                                 <p>Character count: {text.length}</p>
                                 <div className="notes-btn">
-                                <button className="notes-button">Save</button>
+                                    <button className="notes-button">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -90,11 +116,11 @@ export const Notes = () => {
                 </div>
 
 
- 
+
 
             )}
 
-         
+
 
         </>
     )
