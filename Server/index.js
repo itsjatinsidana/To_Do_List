@@ -53,14 +53,11 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post('/makenotes', async (req, res) => {
-    let { heading, paragraph } = req.body;
-    const { data } = await supabase
-        .from('tdl_notes')
-        .select()
-        .eq('heading', heading)
+    let { heading, notescontent } = req.body;
+   
         const{error} = await supabase
         .from('tdl_notes')
-        .insert({heading:heading, paragraph:paragraph})
+        .insert({heading: heading, paragraph: notescontent})
         if(error){
             res.send('error')
         }

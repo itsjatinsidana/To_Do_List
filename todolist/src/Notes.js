@@ -17,11 +17,9 @@ export const Notes = () => {
     const closeModal = () => {
         setIsOpen(false);
     }
-    const [text, setText] = useState('');
+   
 
-    const handleChange = (event) => {
-        setText(event.target.value);
-    };
+   
 
     const [formData, setFormData] = useState({
 
@@ -64,10 +62,11 @@ export const Notes = () => {
         // You can perform further actions like sending data to a server here
         axios.post("http://localhost:5000/makenotes",formData)
         .then((res) =>{
-            if(res === 'success'){
+            if(res.data === 'success'){
                 console.log('note created')
             }
-            else if(res === 'failed'){
+            else if(res.data === 'error'){
+                console.log(res.data)
                 console.log("note not created")
             }
         })
@@ -110,15 +109,16 @@ export const Notes = () => {
 
 
                                 <textarea
-                                    value={text}
+                                    
                                     className="contents"
-                                    name="paragraph"
-                                    onChange={handleChange}
+                                    name="notescontent"
+                                    value={formData.notescontent}
+                                    onChange={handleChangehead}
                                     placeholder="Enter your text here..."
                                     rows={20} // Adjust the number of rows as needed
                                     cols={30} // Adjust the number of columns as needed
                                 />
-                                <p>Character count: {text.length}</p>
+                               
                                 <div className="notes-btn">
                                     <button className="notes-button">Save</button>
                                 </div>
