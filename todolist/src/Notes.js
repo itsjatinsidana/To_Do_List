@@ -66,7 +66,7 @@ export const Notes = () => {
                 console.log('note created')
             }
             else if(res.data === 'error'){
-                console.log(res.data)
+                
                 console.log("note not created")
             }
         })

@@ -54,15 +54,18 @@ app.post("/signup", async (req, res) => {
 
 app.post('/makenotes', async (req, res) => {
     let { heading, notescontent } = req.body;
-   
-        const{error} = await supabase
+         console.log(heading,notescontent)
+        const{error,status} = await supabase
         .from('tdl_notes')
         .insert({heading: heading, paragraph: notescontent})
-        if(error){
-            res.send('error')
-        }
-        else{
+        console.log(status)
+        if(status===201){
             res.send('success')
+        }
+        
+        else{
+          //  console.log(error)
+            res.send('error')
         }
 });
 
