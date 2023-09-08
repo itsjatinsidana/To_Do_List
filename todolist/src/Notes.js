@@ -58,9 +58,22 @@ export const Notes = () => {
             [name]: value
         }));
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData); // You can perform further actions like sending data to a server here
+        console.log(formData); 
+        // You can perform further actions like sending data to a server here
+        axios.post("http://localhost:5000/makenotes",formData)
+        .then((res) =>{
+            if(res === 'success'){
+                console.log('note created')
+            }
+            else if(res === 'failed'){
+                console.log("note not created")
+            }
+        })
+        .catch((e) => {
+            console.log(e);
+        })
     };
 
     return (
@@ -99,7 +112,7 @@ export const Notes = () => {
                                 <textarea
                                     value={text}
                                     className="contents"
-
+                                    name="paragraph"
                                     onChange={handleChange}
                                     placeholder="Enter your text here..."
                                     rows={20} // Adjust the number of rows as needed

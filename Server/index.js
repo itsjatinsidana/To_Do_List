@@ -52,6 +52,22 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+app.post('/makenotes', async (req, res) => {
+    let { heading, paragraph } = req.body;
+    const { data } = await supabase
+        .from('tdl_notes')
+        .select()
+        .eq('heading', heading)
+        const{error} = await supabase
+        .from('tdl_notes')
+        .insert({heading:heading, paragraph:paragraph})
+        if(error){
+            res.send('error')
+        }
+        else{
+            res.send('success')
+        }
+});
 
 app.post('/login', async (req, res) => {
     let { email, password } = req.body
@@ -74,19 +90,19 @@ app.post('/login', async (req, res) => {
     }
 });
 app.post('/getuserdata', async (req, res) => {
-    let { email} = req.body
+    let { email } = req.body
     console.log(email)
     email = email.toLowerCase();
     const { data, error } = await supabase
-    .from('tdl_users')
-    .select()
-    .eq('email', email)
-    if(data.length !== 0){
+        .from('tdl_users')
+        .select()
+        .eq('email', email)
+    if (data.length !== 0) {
         res.send(data[0])
     }
-    else{
+    else {
         res.send('error')
     }
-    
+
 })
 
