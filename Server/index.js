@@ -106,3 +106,19 @@ app.post('/getuserdata', async (req, res) => {
 
 })
 
+app.post('/getUserNotes', async (req, res) => {
+    let {heading , notescontent} = req.body;
+  const {data} = await supabase
+  .from('tdl_notes')
+  .select()
+  .eq( 'heading' , heading , 'paragraph',    notescontent)
+  if(data.length != 0){
+    res.send(data[0])
+  }
+  else{
+    res.send('error')
+  }
+  
+
+})
+

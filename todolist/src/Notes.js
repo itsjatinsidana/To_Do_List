@@ -17,9 +17,9 @@ export const Notes = () => {
     const closeModal = () => {
         setIsOpen(false);
     }
-   
 
-   
+
+
 
     const [formData, setFormData] = useState({
 
@@ -58,20 +58,28 @@ export const Notes = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData); 
+        console.log(formData);
         // You can perform further actions like sending data to a server here
-        axios.post("http://localhost:5000/makenotes",formData)
-        .then((res) =>{
-            if(res.data === 'success'){
-                console.log('note created')
-            }
-            else if(res.data === 'error'){
-                
-                console.log("note not created")
-            }
-        })
-        .catch((e) => {
-            console.log(e);
+        axios.post("http://localhost:5000/makenotes", formData)
+            .then((res) => {
+                if (res.data === 'success') {
+                    console.log('note created')
+                }
+                else if (res.data === 'error') {
+
+                    console.log("note not created")
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+
+        axios.post("http://localhost:5000/getUserNotes", {
+            "heading": heading,
+            "paragraph": notescontent
+
+        }).then((res) => {
+            console.log(res.data);
         })
     };
 
@@ -109,7 +117,7 @@ export const Notes = () => {
 
 
                                 <textarea
-                                    
+
                                     className="contents"
                                     name="notescontent"
                                     value={formData.notescontent}
@@ -118,7 +126,7 @@ export const Notes = () => {
                                     rows={20} // Adjust the number of rows as needed
                                     cols={30} // Adjust the number of columns as needed
                                 />
-                               
+
                                 <div className="notes-btn">
                                     <button className="notes-button">Save</button>
                                 </div>
