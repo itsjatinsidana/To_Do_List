@@ -10,6 +10,8 @@ export const Notes = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
+    const [userId, setUserId] = useState(0);
+    const [userNotes,setUserNotes] = useState([]);
     const firstRender = useRef(true);
     const openModal = () => {
         setIsOpen(true);
@@ -17,23 +19,31 @@ export const Notes = () => {
     const closeModal = () => {
         setIsOpen(false);
     }
-
-
-
-
     const [formData, setFormData] = useState({
 
         heading: '',
         notescontent: '',
+        userId: 0,
 
     });
+    useEffect(() => {
+        setFormData({
+            userId: userId,
+
+        })
+        getUserNotes();
+
+    }, [userId])
+
     function getUserData() {
         axios.post('http://localhost:5000/getuserdata', {
             "email": email
 
+
         }).then((res) => {
             console.log(res.data)
             setUserName(res.data.name)//welcome useername
+            setUserId(res.data.id)
         })
 
     }
@@ -59,6 +69,7 @@ export const Notes = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
+
         // You can perform further actions like sending data to a server here
         axios.post("http://localhost:5000/makenotes", formData)
             .then((res) => {
@@ -73,15 +84,24 @@ export const Notes = () => {
             .catch((e) => {
                 console.log(e);
             })
+    }
 
-        axios.post("http://localhost:5000/getUserNotes", {
-            "heading": heading,
-            "paragraph": notescontent
+    function getUserNotes() {
+        axios.get(`http://localhost:5000/getUserNotes?userId=${userId}`)
+            .then((res) => {
+                console.log(res.data)
+                setUserNotes(res.data);
+            })
 
-        }).then((res) => {
-            console.log(res.data);
-        })
-    };
+
+    }
+    
+    useEffect(() =>{
+        getUserData();
+    },[])
+
+
+
 
     return (
         <>
@@ -132,14 +152,36 @@ export const Notes = () => {
                                 </div>
                             </form>
                         </div>
+                    
 
                     </div>
                 </div>
 
 
 
-
             )}
+            
+
+            <div className="noteslist">
+            
+{
+    userNotes.map(((value,index) =>{
+        return(
+            <>
+            <div className="note1" key={index}>
+                    <div className="note-head">
+                     <h2></h2>
+                    </div>
+                    <div className="node-content">
+                      <p></p>
+                    </div>
+                </div>
+            </>
+        )
+    }))
+}
+                
+            </div>
 
 
 

@@ -53,20 +53,20 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post('/makenotes', async (req, res) => {
-    let { heading, notescontent } = req.body;
-         console.log(heading,notescontent)
-        const{error,status} = await supabase
+    let { heading, notescontent, userId } = req.body;
+    console.log(heading, notescontent, userId)
+    const { error, status } = await supabase
         .from('tdl_notes')
-        .insert({heading: heading, paragraph: notescontent})
-        console.log(status)
-        if(status===201){
-            res.send('success')
-        }
-        
-        else{
-          //  console.log(error)
-            res.send('error')
-        }
+        .insert({ heading: heading, paragraph: notescontent, user_id: userId })
+    console.log(status)
+    if (status === 201) {
+        res.send('success')
+    }
+
+    else {
+        //  console.log(error)
+        res.send('error')
+    }
 });
 
 app.post('/login', async (req, res) => {
@@ -106,19 +106,20 @@ app.post('/getuserdata', async (req, res) => {
 
 })
 
-app.post('/getUserNotes', async (req, res) => {
-    let {heading , notescontent} = req.body;
-  const {data} = await supabase
-  .from('tdl_notes')
-  .select()
-  .eq( 'heading' , heading , 'paragraph',    notescontent)
-  if(data.length != 0){
-    res.send(data[0])
-  }
-  else{
-    res.send('error')
-  }
-  
+app.get('/getUserNotes', async (req, res) => {
+let userId = req.query.userId
+    const { data } = await supabase
+
+        .from('tdl_notes')
+        .select()
+        .eq("user_id", userId)
+    if (data.length != 0) {
+        res.send(data)
+    }
+    else {
+        res.send('error')
+    }
+
 
 })
 
