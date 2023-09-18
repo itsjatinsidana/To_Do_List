@@ -11,7 +11,7 @@ export const Notes = () => {
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
     const [userId, setUserId] = useState(0);
-    const [userNotes, setUserNotes] = useState();
+    const [userNotes, setUserNotes] = useState([]);
     const firstRender = useRef(true);
     const openModal = () => {
         setIsOpen(true);
@@ -27,11 +27,14 @@ export const Notes = () => {
 
     });
     useEffect(() => {
-        setFormData({
-            userId: userId,
+        if (!firstRender.current) {
+            setFormData({
+                userId: userId,
 
-        })
-        getUserNotes();
+            })
+            getUserNotes();
+        }
+
 
     }, [userId])
 
@@ -75,6 +78,8 @@ export const Notes = () => {
             .then((res) => {
                 if (res.data === 'success') {
                     console.log('note created')
+                    closeModal();
+                    getUserNotes();
                 }
                 else if (res.data === 'error') {
 
@@ -96,13 +101,9 @@ export const Notes = () => {
 
     }
 
-    useEffect(() => {
-        getUserData();
-    }, [])
 
-    useEffect(() => {
-        getUserNotes();
-    }, [])
+
+
 
 
 
@@ -114,7 +115,7 @@ export const Notes = () => {
                 <h2> welcome {name}</h2>
             </div>
             <div className="notes">
-                <h4> number of notes : </h4>
+                <h4> number of notes : {userNotes.length} </h4>
             </div>
             <div className="addnew-btn">
                 <button className="plus-btn" onClick={openModal}>+</button>
@@ -166,51 +167,28 @@ export const Notes = () => {
             )}
 
 
+            <div className="noteslist">
 
-
-            {/*  { 
+                {
                     userNotes.map(((value, index) => {
                         return (
                             <>
-                               
+                                <div className="note1" key={index}>
+                                    <div className="note-head">
+                                        <h2> {value.heading}</h2>
+                                    </div>
+                                    <div className="node-content">
+                                        <p>{value.paragraph}</p>
+                                    </div>
+                                </div>
                             </>
                         )
                     }))
-               }
-               */}
-            <div className="noteslist">
-                <div className="note1" >
-                    <div className="note-head">
-                        <h2> sndjjcnld/mas</h2>
-                    </div>
-                    <div className="node-content">
-                        <p>smcn,x znvdsuidk vhfvweufic asm,wvkg</p>
-                    </div>
-                </div>
+                }
 
 
-            
-            <div className="note1" >
-                <div className="note-head">
-                    <h2> sndjjcnld/mas</h2>
-                </div>
-                <div className="node-content">
-                    <p>smcn,x znvdsuidk vhfvweufic asm,wvkg</p>
-                </div>
+
             </div>
-
-
-            <div className="note1" >
-                <div className="note-head">
-                    <h2> sndjjcnld/mas</h2>
-                </div>
-                <div className="node-content">
-                    <p>smcn,x znvdsuidk vhfvweufic asm,wvkg</p>
-                </div>
-            </div>
-
-
-</div>
 
 
 

@@ -22,7 +22,7 @@
   position: relative;
   top: 40px;
 }
-@media(max-width:700px){
+@media(max-width:1300px){
     .noteslist{
         display: flex;
         flex-direction: column;
@@ -36,6 +36,7 @@
     width: 400px;
     border-radius: 10px;
     box-shadow: #20232a;
+    
 }
 .noteslist .note1 .note-head{
     display: flex;
@@ -317,6 +318,9 @@ font-family: cursive;
  .signup-form-container form button:hover {
      background-color: chocolate;
  }
+ .user{
+    width: max-content;
+ }
  .user h2{
     display: flex;
 color: #4F709C;
@@ -326,6 +330,9 @@ position: relative;
 left: 50px;
 margin: 0%;
 padding: 0%;
+ }
+ .notes{
+    width: max-content;
  }
  .notes h4{
     display: flex;

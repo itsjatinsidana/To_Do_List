@@ -15,6 +15,7 @@ app.use(function (req, res, next) {
 
 //supabase code
 import { createClient } from "@supabase/supabase-js";
+import { useId } from "react";
 const supabaseurl = 'https://kgtxemrgwkupvxgadoxv.supabase.co';
 const supabasekey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtndHhlbXJnd2t1cHZ4Z2Fkb3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTM0MTY4MjcsImV4cCI6MjAwODk5MjgyN30.cd74IzmFklorD70yu9Ler9tn_G8nHkbS4-WWeeW4-QQ'
 const supabase = createClient(supabaseurl, supabasekey);
@@ -107,13 +108,14 @@ app.post('/getuserdata', async (req, res) => {
 })
 
 app.get('/getUserNotes', async (req, res) => {
-let userId = req.query.userId
+    let userId = req.query.userId
+    console.log(userId)
     const { data } = await supabase
 
         .from('tdl_notes')
         .select()
         .eq("user_id", userId)
-    if (data.length != 0) {
+    if (data.length !== 0) {
         res.send(data)
     }
     else {
