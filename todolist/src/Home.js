@@ -1,5 +1,6 @@
 import { Navbar } from "./Navbar"
 import React, { useState } from 'react';
+import Swal from "sweetalert2";
 
 import  axios  from "axios";
 
@@ -35,12 +36,16 @@ export const Home = () => {
         .then((res) =>{             
          if(res.data === 'success'){
             console.log('signup successful')
+            Swal.fire('signup successful,please login now','','success');
+            closeModal();
          }
          else if(res.data === 'failed'){
             console.log('signup failed')
+            Swal.fire('signup failed','','failed');
          }
          else if(res.data === 'duplicate'){
                  console.log('email already exist')
+                 Swal.fire('email alredy exist','','failed');
          }
         })
         .catch((e) => {

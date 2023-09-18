@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Navbar } from "./Navbar";
 import { getCookie } from "./config/CookieMaker";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 
@@ -80,10 +81,12 @@ export const Notes = () => {
                     console.log('note created')
                     closeModal();
                     getUserNotes();
+                    Swal.fire('Note Created','','success');
                 }
                 else if (res.data === 'error') {
 
                     console.log("note not created")
+                    Swal.fire('Note not Created','','failed');
                 }
             })
             .catch((e) => {
@@ -168,22 +171,28 @@ export const Notes = () => {
 
 
             <div className="noteslist">
-
                 {
-                    userNotes.map(((value, index) => {
-                        return (
-                            <>
-                                <div className="note1" key={index}>
-                                    <div className="note-head">
-                                        <h2> {value.heading}</h2>
-                                    </div>
-                                    <div className="node-content">
-                                        <p>{value.paragraph}</p>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    }))
+                    userNotes.length !=0 &&
+
+                    <>
+                        {
+
+                            userNotes.map(((value, index) => {
+                                return (
+                                    <>
+                                        <div className="note1" key={index}>
+                                            <div className="note-head">
+                                                <h2> {value.heading}</h2>
+                                            </div>
+                                            <div className="node-content">
+                                                <p>{value.paragraph}</p>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            }))
+                        }
+                    </>
                 }
 
 

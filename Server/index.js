@@ -119,7 +119,7 @@ app.get('/getUserNotes', async (req, res) => {
         res.send(data)
     }
     else {
-        res.send('error')
+        res.send([])
     }
 
 

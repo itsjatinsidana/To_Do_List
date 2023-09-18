@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
 import { getCookie,setCookie } from "./config/CookieMaker";
+import Swal from "sweetalert2";
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const nav = useNavigate();
@@ -38,9 +39,13 @@ export const Navbar = () => {
                 }
                 else if (res.data === 'password not matched') {
                     console.log('password not matched')
+                    Swal.fire('pasword not match','','failed');
                 }
                 else if (res.data === 'account does not exist') {
                     console.log('account does not exist')
+                    Swal.fire('account dosenot exist, please signup','','failed');
+                    closeModal();
+                    
                 }
             })
             .catch((e) => {
