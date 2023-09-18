@@ -12,6 +12,46 @@
 
 
  }
+.noteslist{
+    display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  font-family: cursive;
+  position: relative;
+  top: 40px;
+}
+@media(max-width:700px){
+    .noteslist{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+.noteslist .note1{
+    background-color:chocolate;
+    height: 250px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: #20232a;
+}
+.noteslist .note1 .note-head{
+    display: flex;
+    justify-content: center;
+    background-color: antiquewhite;
+    box-shadow: 5px;
+    height: 60px;
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+}
+.noteslist .note1 .node-content{
+display: flex;
+justify-content: center;
+font-family: cursive;
+}
 
  .navbar-container .navbar-logo {
      color: white;

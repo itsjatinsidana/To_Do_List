@@ -11,7 +11,7 @@ export const Notes = () => {
     const [email, setEmail] = useState('');
     const [name, setUserName] = useState('');
     const [userId, setUserId] = useState(0);
-    const [userNotes,setUserNotes] = useState([]);
+    const [userNotes, setUserNotes] = useState();
     const firstRender = useRef(true);
     const openModal = () => {
         setIsOpen(true);
@@ -95,10 +95,14 @@ export const Notes = () => {
 
 
     }
-    
-    useEffect(() =>{
+
+    useEffect(() => {
         getUserData();
-    },[])
+    }, [])
+
+    useEffect(() => {
+        getUserNotes();
+    }, [])
 
 
 
@@ -152,7 +156,7 @@ export const Notes = () => {
                                 </div>
                             </form>
                         </div>
-                    
+
 
                     </div>
                 </div>
@@ -160,28 +164,54 @@ export const Notes = () => {
 
 
             )}
-            
 
+
+
+
+            {/*  { 
+                    userNotes.map(((value, index) => {
+                        return (
+                            <>
+                               
+                            </>
+                        )
+                    }))
+               }
+               */}
             <div className="noteslist">
-            
-{
-    userNotes.map(((value,index) =>{
-        return(
-            <>
-            <div className="note1" key={index}>
+                <div className="note1" >
                     <div className="note-head">
-                     <h2></h2>
+                        <h2> sndjjcnld/mas</h2>
                     </div>
                     <div className="node-content">
-                      <p></p>
+                        <p>smcn,x znvdsuidk vhfvweufic asm,wvkg</p>
                     </div>
                 </div>
-            </>
-        )
-    }))
-}
-                
+
+
+            
+            <div className="note1" >
+                <div className="note-head">
+                    <h2> sndjjcnld/mas</h2>
+                </div>
+                <div className="node-content">
+                    <p>smcn,x znvdsuidk vhfvweufic asm,wvkg</p>
+                </div>
             </div>
+
+
+            <div className="note1" >
+                <div className="note-head">
+                    <h2> sndjjcnld/mas</h2>
+                </div>
+                <div className="node-content">
+                    <p>smcn,x znvdsuidk vhfvweufic asm,wvkg</p>
+                </div>
+            </div>
+
+
+</div>
+
 
 
 
