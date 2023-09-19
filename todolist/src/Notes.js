@@ -40,7 +40,7 @@ export const Notes = () => {
     }, [userId])
 
     function getUserData() {
-        axios.post('http://localhost:5000/getuserdata', {
+        axios.post('https://todolist-backend-7kg7.onrender.com/getuserdata', {
             "email": email
 
 
@@ -75,7 +75,7 @@ export const Notes = () => {
         console.log(formData);
 
         // You can perform further actions like sending data to a server here
-        axios.post("http://localhost:5000/makenotes", formData)
+        axios.post("https://todolist-backend-7kg7.onrender.com/makenotes", formData)
             .then((res) => {
                 if (res.data === 'success') {
                     console.log('note created')
@@ -95,7 +95,7 @@ export const Notes = () => {
     }
 
     function getUserNotes() {
-        axios.get(`http://localhost:5000/getUserNotes?userId=${userId}`)
+        axios.get(`https://todolist-backend-7kg7.onrender.com/getUserNotes?userId=${userId}`)
             .then((res) => {
                 console.log(res.data)
                 setUserNotes(res.data);
@@ -139,6 +139,7 @@ export const Notes = () => {
                                     placeholder="Heading..."
                                     value={formData.heading}
                                     onChange={handleChangehead}
+                                    required="required"
 
                                 />
 
@@ -153,6 +154,7 @@ export const Notes = () => {
                                     placeholder="Enter your text here..."
                                     rows={20} // Adjust the number of rows as needed
                                     cols={30} // Adjust the number of columns as needed
+                                    required="required"
                                 />
 
                                 <div className="notes-btn">

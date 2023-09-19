@@ -32,7 +32,7 @@ export const Home = () => {
      const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
-        axios.post("http://localhost:5000/signup",formData)//to create backend connection
+        axios.post("https://todolist-backend-7kg7.onrender.com/signup",formData)//to create backend connection
         .then((res) =>{             
          if(res.data === 'success'){
             console.log('signup successful')

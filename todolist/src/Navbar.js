@@ -30,7 +30,7 @@ export const Navbar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData); // You can perform further actions like sending data to a server here
-        axios.post("http://localhost:5000/login", formData)
+        axios.post("https://todolist-backend-7kg7.onrender.com/login", formData)
             .then((res) => {
                 if (res.data === 'success') {
                     console.log('login successful')
